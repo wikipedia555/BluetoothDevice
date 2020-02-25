@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -128,6 +129,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+
+        deviceList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.i("Item Click", listOfDevice.get(i).get(lName));
+                Log.i("Item Click", listOfDevice.get(i).get(lAddress));
+
+            }
+        });
 
 
 
