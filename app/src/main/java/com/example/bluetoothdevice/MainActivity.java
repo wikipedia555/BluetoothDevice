@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final ListView deviceList = (ListView) findViewById(R.id.deviceList);
         searchDevice = findViewById(R.id.searchButton);
+        final Intent sendDataToConnect = new Intent(this, SendCommandActivity.class);
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
@@ -133,8 +134,16 @@ public class MainActivity extends AppCompatActivity {
         deviceList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.i("Item Click", listOfDevice.get(i).get(lName));
-                Log.i("Item Click", listOfDevice.get(i).get(lAddress));
+                String name = listOfDevice.get(i).get(lName);
+                String address = listOfDevice.get(i).get(lAddress);
+                Log.i("Item Click", name);
+                Log.i("Item Click", address);
+                sendDataToConnect.putExtra(lName, name);
+                sendDataToConnect.putExtra(lAddress,address);
+                // показываем новое Activity
+                startActivity(sendDataToConnect);
+
+
 
             }
         });
