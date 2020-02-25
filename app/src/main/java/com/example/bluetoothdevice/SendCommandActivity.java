@@ -86,7 +86,20 @@ public class SendCommandActivity extends AppCompatActivity {
             OutputStream outStream = clientSocket.getOutputStream();
 
             //Пишем данные в выходной поток
-            outStream.write(1);
+            byte[] bytes = command.getBytes();
+            if(outStream!=null)
+            {
+                try
+                {
+                    outStream.write(bytes);
+                    outStream.flush();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            //outStream.write(1);
 
         } catch (IOException e) {
             //Если есть ошибки, выводим их в лог
